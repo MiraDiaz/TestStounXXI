@@ -1,0 +1,9 @@
+CREATE FUNCTION Converter_Valut (@valute varchar(30), @date date)
+RETURNS DECIMAL(8,5)
+	BEGIN
+		DECLARE @rez decimal(8,5)
+		SELECT @rez=p.Rate FROM EchangeRates p
+		WHERE p.Valute=@valute OR p.Data=@date;
+		RETURN @rez;
+	END;
+GO
